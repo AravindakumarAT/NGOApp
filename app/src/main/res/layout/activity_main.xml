@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/signin"
+        android:id="@+id/text"
         android:text="GREEN WARRIORS"
         android:textColor="@color/white"
         android:textSize="35dp"
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/email"
-        android:layout_below="@id/signin"
+        android:layout_below="@id/text"
         android:background="#30ffffff"
         android:hint="Email"
         android:textColorHint="@color/white"
