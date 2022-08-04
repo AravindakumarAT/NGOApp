@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text"
+        android:id="@+id/loginbanner"
         android:text="GREEN WARRIORS"
         android:textColor="@color/white"
         android:textSize="35dp"
@@ -21,8 +21,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/email"
-        android:layout_below="@id/text"
+        android:id="@+id/loginemail"
+        android:layout_below="@id/loginbanner"
         android:background="#30ffffff"
         android:hint="Email"
         android:textColorHint="@color/white"
@@ -35,8 +35,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/password"
-        android:layout_below="@id/email"
+        android:id="@+id/loginpassword"
+        android:layout_below="@id/loginemail"
         android:background="#30ffffff"
         android:hint="Password"
         android:textColorHint="@color/white"
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/loginbtn"
-        android:layout_below="@id/password"
+        android:layout_below="@id/loginpassword"
         android:text="LOGIN"
         android:backgroundTint="@color/design_default_color_secondary"
         android:layout_centerHorizontal="true"
@@ -67,7 +67,7 @@
         android:layout_margin="20dp"/>
 
     <TextView
-        android:id="@+id/signup"
+        android:id="@+id/loginsignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/loginbtn"

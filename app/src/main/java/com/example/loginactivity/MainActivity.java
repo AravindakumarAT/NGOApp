@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        register=(TextView) findViewById(R.id.signup);
+        register=(TextView) findViewById(R.id.loginsignup);
         register.setOnClickListener(this);
 
     }
@@ -27,13 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v)
     {
-        switch (v.getId())
-        {
-            case R.id.signup: startActivity(new Intent(this,SignUp.class));
-            break;
-        }
+        Intent intent=new Intent(this, SignUp.class);
+        startActivity(intent);
     }
-
-
-
 }

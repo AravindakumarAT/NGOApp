@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/ngo_image"
     tools:context=".SignUp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text"
+        android:id="@+id/signupbanner"
         android:text="GREEN WARRIORS"
         android:textColor="@color/white"
         android:textSize="35dp"
@@ -20,8 +21,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/name"
-        android:layout_below="@id/text"
+        android:id="@+id/signupname"
+        android:layout_below="@id/signupbanner"
         android:background="#30ffffff"
         android:hint="Name"
         android:textColorHint="@color/white"
@@ -34,8 +35,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/email"
-        android:layout_below="@id/name"
+        android:id="@+id/signupemail"
+        android:layout_below="@id/signupname"
         android:background="#30ffffff"
         android:hint="Email"
         android:textColorHint="@color/white"
@@ -48,8 +49,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/password"
-        android:layout_below="@id/email"
+        android:id="@+id/signuppassword"
+        android:layout_below="@id/signupemail"
         android:background="#30ffffff"
         android:hint="Password"
         android:textColorHint="@color/white"
@@ -66,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/signupbtn"
-        android:layout_below="@id/password"
+        android:layout_below="@id/signuppassword"
         android:text="SIGN UP"
         android:backgroundTint="@color/design_default_color_secondary"
         android:layout_centerHorizontal="true"

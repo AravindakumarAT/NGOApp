@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31 //Changed here
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.loginactivity"
         minSdkVersion 25
-        targetSdkVersion 30
+        targetSdkVersion 31 //Changed here both should be same
         versionCode 1
         versionName "1.0"
 
