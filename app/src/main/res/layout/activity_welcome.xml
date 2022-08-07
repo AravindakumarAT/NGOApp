@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ngo_image">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/welbanner"
+        android:text="30 Day\nSustainable Challenge"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_margin="50dp"
+        android:gravity="center"
+    />
+
+    <TextView
+        android:id="@+id/weldescription"
+        android:layout_width="350dp"
+        android:layout_height="390dp"
+        android:layout_below="@id/welbanner"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="20dp"
+        android:text="This 30-day sustainable challenged is all about bringing a behaviour change by adapting tiny sustainable practicles from the comforts of your home.\n\nAs part of the challenge, you are given the ownership to collect and segregate plastic wastes
+generated in your home. In the next page, feel free to enter the quantity of the waste you
+have collected for the given day and know the CO2 quantity you are about to save by just
+adapting segregation practice at your home : )"
+        android:textColor="#cdb891"
+        android:textSize="20dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/welbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weldescription"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="40dp"
+        android:backgroundTint="@color/design_default_color_secondary"
+        android:text="CONTINUE" />
+
+
+</RelativeLayout>
