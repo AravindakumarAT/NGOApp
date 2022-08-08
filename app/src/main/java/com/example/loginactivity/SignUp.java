@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private TextView signupbtn;
     private EditText editName, editEmail, editPassword;
+    double totalco2;
 
     private FirebaseAuth mAuth; //declare and initialize our Auth
     @Override
@@ -45,6 +46,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         String name=editName.getText().toString().trim();
         String email=editEmail.getText().toString().trim();
         String password=editPassword.getText().toString().trim();
+        totalco2=0;
         if(name.isEmpty())
         {
             editName.setError("Enter Name");
@@ -84,7 +86,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     {
                         if(task.isSuccessful())
                         {
-                            User user=new User(name,email);
+                            User user=new User(name,email,totalco2);
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
