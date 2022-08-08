@@ -10,13 +10,13 @@
 
     <TextView
         android:id="@+id/calbanner1"
-        android:layout_width="366dp"
-        android:layout_height="87dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="23dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="22dp"
         android:gravity="center"
         android:text="Amount of CO2 you have saved today"
@@ -31,9 +31,9 @@
         android:layout_below="@id/calbanner1"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="-31dp"
-        android:layout_marginEnd="19dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:gravity="center"
         android:text="Enter the quantity of plastic waste you have collected today, enter zero if none"
         android:textColor="#cdb891"
@@ -42,7 +42,7 @@
 
     <TextView
         android:id="@+id/caldate"
-        android:layout_width="369dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/calbanner2"
         android:layout_alignParentStart="true"
@@ -50,14 +50,140 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="10dp"
         android:background="#30ffffff"
         android:drawableRight="@drawable/ic_baseline_date_range_24"
         android:drawablePadding="20dp"
         android:hint="Select Date"
-        android:padding="20dp"
+        android:textSize="17dp"
+        android:padding="7dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
+
+    <EditText
+        android:id="@+id/calmicro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/caldate"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="#30ffffff"
+        android:hint="Micro Wrappers (include Chocolate Wrappers)"
+        android:padding="7dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <EditText
+        android:id="@+id/calsmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calmicro"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="#30ffffff"
+        android:padding="7dp"
+        android:hint="Small size wrappers(max holding capacity &lt; 250g or ml)"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <EditText
+        android:id="@+id/calmed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calsmall"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="#30ffffff"
+        android:padding="7dp"
+        android:hint="Medium size wrappers(max holding capacity &lt; 500g or ml)"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <EditText
+        android:id="@+id/callarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calmed"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="#30ffffff"
+        android:padding="7dp"
+        android:hint="Large size wrappers(max holding capacity 1kg or ml)"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <EditText
+        android:id="@+id/calsmallbot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/callarge"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="#30ffffff"
+        android:padding="7dp"
+        android:hint="Plastic bottle/containers(max holding capacity 250g or l)"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <EditText
+        android:id="@+id/calmedbot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calsmallbot"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="#30ffffff"
+        android:padding="7dp"
+        android:hint="Plastic bottle/containers(max holding capacity 500g or l)"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <EditText
+        android:id="@+id/callargebot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calmedbot"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="#30ffffff"
+        android:padding="7dp"
+        android:hint="Plastic bottle/containers(max holding capacity 1kg or l)"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/calbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/callargebot"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="40dp"
+        android:backgroundTint="@color/design_default_color_secondary"
+        android:text="CONTINUE" />
+
+
+
+
 
 
 </RelativeLayout>
