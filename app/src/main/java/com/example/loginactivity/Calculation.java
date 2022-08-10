@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -22,7 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class Calculation extends AppCompatActivity implements View.OnClickListener
 {
@@ -44,8 +47,10 @@ public class Calculation extends AppCompatActivity implements View.OnClickListen
     private DatabaseReference reference;
     private String userid;
 
-    double totalco2;
-    double mtotalco2,ytotalco2;
+    double totalco2=0.0;
+    double mtotalco2=0.0,ytotalco2=0.0;
+
+    List<Double> newallco2=new ArrayList<Double>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -97,7 +102,7 @@ public class Calculation extends AppCompatActivity implements View.OnClickListen
         });
 
         user= FirebaseAuth.getInstance().getCurrentUser();
-        reference= FirebaseDatabase.getInstance().getReference("Users");
+        reference= FirebaseDatabase.getInstance().getReference().child("Users");
         userid=user.getUid();
     }
 
@@ -296,59 +301,7 @@ public class Calculation extends AppCompatActivity implements View.OnClickListen
             {
                 if(snapshot.exists())
                 {
-                    reference.child(userid).child("totalco2").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot)
-                        {
-                            if(snapshot.exists())
-                            {
-                                totalco2 =(double) snapshot.getValue();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error)
-                        {
-
-                        }
-                    });
-                    reference.child(userid).child(fyear).child("yeartotalco2").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot)
-                        {
-                            if(snapshot.exists())
-                            {
-                                ytotalco2 =(double) snapshot.getValue();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error)
-                        {
-
-                        }
-                    });
-
-                    reference.child(userid).child(fyear).child(fmonth).child("monthtotalco2").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot)
-                        {
-                            if(snapshot.exists())
-                            {
-                                mtotalco2 =(double) snapshot.getValue();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error)
-                        {
-
-                        }
-                    });
                     double old_day_data=(double) snapshot.getValue();
-                    totalco2=totalco2-old_day_data;
-                    mtotalco2=mtotalco2-old_day_data;
-                    ytotalco2=ytotalco2-old_day_data;
                     reference.child(userid).child(fyear).child(fmonth).child(fday).setValue(day_total).addOnCompleteListener(new OnCompleteListener<Void>()
                     {
                         @Override
@@ -356,13 +309,87 @@ public class Calculation extends AppCompatActivity implements View.OnClickListen
                         {
                             if(task.isSuccessful())
                             {
-                                totalco2=totalco2+day_total;
-                                mtotalco2=mtotalco2+day_total;
-                                ytotalco2=ytotalco2+day_total;
+                                reference.child(userid).child("totalco2").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot)
+                                    {
+                                        if(snapshot.exists())
+                                        {
+                                            totalco2 =(double) snapshot.getValue();
+                                        }
+                                        else
+                                        {
+                                            totalco2=0;
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error)
+                                    {
+
+                                    }
+                                });
+
+                                reference.child(userid).child(fyear).child("yeartotalco2").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot)
+                                    {
+                                        if(snapshot.exists())
+                                        {
+                                            ytotalco2 =(double) snapshot.getValue();
+
+                                        }
+                                        else
+                                        {
+                                            ytotalco2=0;
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error)
+                                    {
+
+                                    }
+                                });
+
+                                reference.child(userid).child(fyear).child(fmonth).child("monthtotalco2").addListenerForSingleValueEvent(new ValueEventListener()
+                                {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot)
+                                    {
+                                        if(snapshot.exists())
+                                        {
+                                            mtotalco2 =(double) snapshot.getValue();
+                                        }
+                                        else
+                                        {
+                                            mtotalco2=0;
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error)
+                                    {
+
+                                    }
+                                });
+
+
+                                System.out.println("ATA Day_total"+day_total);
+                                System.out.println("ATA totalco2"+totalco2);
+                                System.out.println("ATA Old day data"+old_day_data);
+                                System.out.println("ATA method"+totalco2);
+                                totalco2=totalco2-old_day_data+day_total;
+                                System.out.println("ATA new totalco2"+totalco2);
+                                System.out.println("ATA       Mco2"+mtotalco2);
+                                mtotalco2=mtotalco2-old_day_data+day_total;
+                                System.out.println("ATA new mtotal co2 data"+mtotalco2);
+                                ytotalco2=ytotalco2-old_day_data+day_total;
+                                System.out.println("ATA new ytotal co2 data"+ytotalco2);
                                 reference.child(userid).child("totalco2").setValue(totalco2);
                                 reference.child(userid).child(fyear).child("yeartotalco2").setValue(ytotalco2);
                                 reference.child(userid).child(fyear).child(fmonth).child("monthtotalco2").setValue(mtotalco2);
-                                Toast.makeText(Calculation.this,"Date Updated Successfully!!!",Toast.LENGTH_LONG).show();
+                                Toast.makeText(Calculation.this,"Data Updated Successfully!!!",Toast.LENGTH_LONG).show();
                             }
                             else
                             {
@@ -373,33 +400,84 @@ public class Calculation extends AppCompatActivity implements View.OnClickListen
                 }
                 else
                 {
-                    reference.child(userid).child(fyear).child(fmonth).child(fday).setValue(day_total).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    reference.child(userid).child(fyear).child(fmonth).child(fday).setValue(day_total);
+                    DatabaseReference yreference=reference.child(userid).child(fyear);
+                    yreference.addListenerForSingleValueEvent(new ValueEventListener()
+                    {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task)
+                        public void onDataChange(@NonNull DataSnapshot snapshot)
                         {
-                            if(task.isSuccessful())
+                            if(snapshot.hasChild("yeartotalco2"))
                             {
-                                totalco2=totalco2+day_total;
-                                mtotalco2=mtotalco2+day_total;
+                                ytotalco2=(double)snapshot.child("yeartotalco2").getValue();
                                 ytotalco2=ytotalco2+day_total;
-                                reference.child(userid).child("totalco2").setValue(totalco2);
-                                reference.child(userid).child(fyear).child("yeartotalco2").setValue(ytotalco2);
-                                reference.child(userid).child(fyear).child(fmonth).child("monthtotalco2").setValue(mtotalco2);
-                                Toast.makeText(Calculation.this,"Date Created Sucessfully",Toast.LENGTH_LONG).show();
+                                yreference.child("yeartotalco2").setValue(ytotalco2);
+                                System.out.println("aaaYear if ");
                             }
                             else
                             {
-                                Toast.makeText(Calculation.this,"Failed to Calculate",Toast.LENGTH_LONG).show();
+                                yreference.child("yeartotalco2").setValue(day_total);
+                                System.out.println("aaaYear else ");
                             }
                         }
-                    });
-                }
-            }
 
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
+                    DatabaseReference mreference=reference.child(userid).child(fyear).child(fmonth);
+                    mreference.addListenerForSingleValueEvent(new ValueEventListener()
+                    {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot)
+                        {
+
+                            if(snapshot.hasChild("monthtotalco2"))
+                            {
+                                mtotalco2=(double)snapshot.child("monthtotalco2").getValue();
+                              //  mtotalco2=dvalue(value);
+                                mtotalco2=mtotalco2+day_total;
+                                mreference.child("monthtotalco2").setValue(mtotalco2);
+                            }
+                            else
+                            {
+                                mreference.child("monthtotalco2").setValue(day_total);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error)
+                        {
+
+                        }
+                    });
+
+                    totalco2=totalco2+day_total;
+                    reference.child(userid).child("totalco2").setValue(totalco2);
+
+                    mtotalco2=0;ytotalco2=0;totalco2=0;
+                    Toast.makeText(Calculation.this,"Data created Successfully!!!",Toast.LENGTH_LONG).show();
+
+                }
+
+            }
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error)
+            {
 
             }
         });
     }
+
+    private double dvalue(Object obj)
+    {
+        String str = obj.toString();
+        double d = Double.valueOf(str).doubleValue();
+        return d;
+    }
+
 }
