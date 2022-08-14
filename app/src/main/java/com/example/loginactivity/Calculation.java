@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
@@ -49,8 +50,15 @@ public class Calculation extends AppCompatActivity implements View.OnClickListen
     private DatabaseReference reference;
     private String userid;
 
+
     double totalco2=0.0;
     double mtotalco2=0.0,ytotalco2=0.0;
+
+    public static double sday_total=0.0;
+    public static double totalco2()
+    {
+        return sday_total;
+    }
 
     List<Double> newallco2=new ArrayList<Double>();
 
@@ -219,6 +227,7 @@ public class Calculation extends AppCompatActivity implements View.OnClickListen
 
         double day_total= (0.000324*imicro)+(0.00324*iscover)+(0.0046656*imcover)+
                                (0.00756*ilcover)+(0.0108*isbottle)+(0.015228*imbottle)+(0.02170*ilbottle);
+        sday_total = day_total;
 
 
      /*   reference.child(userid).child(date).child("totalco2").addListenerForSingleValueEvent(new ValueEventListener()
@@ -462,6 +471,8 @@ public class Calculation extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+        Intent intent = new Intent(Calculation.this, Output.class);
+        startActivity(intent);
     }
 
     private double dvalue(Object obj)
